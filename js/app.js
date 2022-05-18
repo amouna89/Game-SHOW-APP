@@ -3,14 +3,14 @@
 const btn_start =document.getElementsByClassName("btn__reset");
 
 
- btn_start[0].addEventListener("click",StartGame);
-
- function StartGame(){
+ btn_start[0].addEventListener("click",() => {
    
     const overlay = document.getElementById("overlay");
     overlay.style.display ="none"
 
-}
+});
+
+
 //Create a Phrases array that stores 5 strings 
 var phrases= ["Nermine","play","together","Haroun","Nice"];
 
@@ -57,14 +57,19 @@ console.log(arr[i]);
      item.appendChild(textnode);
 
      // Append the "li" node to the list:
-    document.getElementById("list").appendChild(item);
+    // document.getElementById("list").appendChild(item);
+
+    var list = document.querySelector("#phrase ul");
+    list.appendChild(item);
+
       
 }
 
 }
 
-
 addPhraseToDisplay(randomPhrase);
+
+// document.querySelector("h2").textContent = "HAPPY GAME";
 
 
 
