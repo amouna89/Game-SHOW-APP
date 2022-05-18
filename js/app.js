@@ -41,35 +41,45 @@ console.log(randomPhrase);
 
 function addPhraseToDisplay(arr){
    var item="";
+   
      
-for (let i=0 ; i < arr.length ; i++ ){
+for (let i=0 ; i < arr.length ; i++ ){//begin for
 
 console.log(arr[i]);
-
+var list = document.querySelector("#phrase ul");
     //create an li node
     item = document.createElement("li"); 
 
     // Create a text node:
-    var text = arr[i];
-    const textnode = document.createTextNode(text);
+    const textnode = document.createTextNode(arr[i]);
 
    // Append the text node to the "li" node:
      item.appendChild(textnode);
 
-     // Append the "li" node to the list:
-    // document.getElementById("list").appendChild(item);
-
-    var list = document.querySelector("#phrase ul");
+     if (textnode == ""){
+        item.className ="space";
+        console.log("space");
+        // Append the "li" node to the list:
     list.appendChild(item);
 
-      
-}
+     }
+     else{
+    item.className ="letter"
+    console.log("letter");
+    // Append the "li" node to the list:
+    list.appendChild(item);
+     }
+    
+     
+    }//fin for
 
-}
+}//fin de la fonction addPhraseToDisplay
 
 addPhraseToDisplay(randomPhrase);
 
-// document.querySelector("h2").textContent = "HAPPY GAME";
+//var p = document.querySelector("p").textContent ="happy day"
+
+
 
 
 
