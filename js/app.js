@@ -79,7 +79,11 @@ addPhraseToDisplay(randomPhrase);
 
 //var p = document.querySelector("p").textContent ="happy day"
 
+//checkLetter function
 
+function checkLetter(button) {
+
+}
 
 
 
