@@ -97,7 +97,8 @@ function checkLetter(button) {
 
 }
 
-qwerty.addEventListener("click", (event) => {
+
+("click", (event) => {
 
     const button =event.target;
 
