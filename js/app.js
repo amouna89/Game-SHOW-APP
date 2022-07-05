@@ -4,6 +4,8 @@ const btn_start =document.getElementsByClassName("btn__reset");
 
 const  qwerty= document.getElementById("qwerty");
 
+
+
  btn_start[0].addEventListener("click",() => {
    
     const overlay = document.getElementById("overlay");
@@ -31,11 +33,6 @@ else {
     return arr[5];
 }
     
-    
-
- 
-    
-
 
 }
 var randomPhrase = getRandomPhraseAsArray(phrases);
@@ -75,10 +72,10 @@ addPhraseToDisplay(randomPhrase);
 
 function checkLetter(button) {
 
-    const buttonLetter =button.textContent;
+    const buttonLetter = button.textContent;
     const word = document.getElementsByClassName("letter");
-    
-    const match =null;
+    //Create a variable to store if a match is found and give it an initial value of null
+    var match = null;
 
     for(let i=0 ; i < word.length ; i++){
 
@@ -87,6 +84,7 @@ function checkLetter(button) {
         if (buttonLetter === li.textContent){
             li.className ="show";
             match = buttonLetter;
+            
         }
 
 
@@ -97,14 +95,33 @@ function checkLetter(button) {
 
 }
 
+var missed = 5;
+var counter =0;
 
-("click", (event) => {
+qwerty.addEventListener ("click", (event) => {
 
-    const button =event.target;
+const button =event.target;
+var match =checkLetter(button);
+const hearts = document.getElementsByTagName("img");
 
-    if (button.tagName === "BUTTON"){
+if (button.tagName === "BUTTON"){
 
-        console.log("a buttton");
+    button.className ="chosen";
+    if (match == null) {
+        //the button pressed is not in correct so the guess is wrong,remove one of 
+        //the heart images and increment the missed counter
+        missed --;
+        hearts[counter].style.display ="none";
+        counter++;
+        console.log(missed);
+        console.log("wrong guess");
+
+    }
+   else {
+       console.log("good job");
+
+    }
+   
     }
 
 
