@@ -98,14 +98,12 @@ function checkLetter(button) {
 //missed is the counter to check how many wrong guesses the player made 
 
 var missed = 0;
-var counter =0;
-
-
 
 //the title to display in the ovelay
 const h2 = document.getElementsByClassName("title") ;
 
 //add an event listener on the keyboard 
+
 qwerty.addEventListener ("click", (event) => {
 
 const button =event.target;
@@ -116,21 +114,20 @@ checkWin();
 if (button.tagName === "BUTTON"){
 
     button.className ="chosen";
+    button.disabled = true;
+    
     if (match == null) {
         //the button pressed is not in correct so the guess is wrong,remove one of 
-        //the heart images and increment the missed counter
-        missed ++;
-        hearts[counter].style.display ="none";
-        // const heartlost = document.createElement("img");
-        // heartlost.src = "images/lostHeart.png";
-    
-        if(counter < 4 ){
-            counter++ ;
+        //the heart images and increment the missed counter 
+        hearts[missed].style.display ="none";
+
+        if (missed <= 3 ){
+            missed ++;
+            
+        }// end if missed <= 3 
         
-        }
-
-
-    }//end if
+        
+    }//end if match == null
    
     }
 
@@ -141,10 +138,25 @@ if (button.tagName === "BUTTON"){
 
 function checkWin(){
 
-    const phraseToGuess = document.getElementsByClassName("letter");
+    const phraseTOdisplay = document.getElementsByClassName("letter");
     const lettersPressed = document.getElementsByClassName("show");
+    var phrase1 ="";
+    var phrase2="";
 
-    if (phraseToGuess.length === lettersPressed.length){
+
+    for (let i=0 ;i <lettersPressed.length ; i++){
+
+        phrase1 = phrase1.concat(lettersPressed[i]);
+
+    }
+
+    for (let i=0;i <phraseTOdisplay.length ; i++){
+
+        phrase2 = phrase2.concat(phraseTOdisplay[i]);
+
+    }
+
+    if (phrase1 === phrase2){
       //the user guessed the phrase correctly 
       //display the win overlay
       overlay.className = "win";
@@ -154,7 +166,7 @@ function checkWin(){
 
     }
 
-    if (missed > 4 ){
+    if (missed === 4 ){
         //the user made 5 wrong guesses
         //display the lose overlay
         overlay.className = "lose";
@@ -168,7 +180,7 @@ function checkWin(){
 
 }
 
-// checkWin(); 
+ checkWin(); 
 
 
 
