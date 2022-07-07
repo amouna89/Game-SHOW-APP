@@ -4,18 +4,18 @@ const btn_start =document.getElementsByClassName("btn__reset");
 
 const  qwerty= document.getElementById("qwerty");
 
+const overlay = document.getElementById("overlay");
 
 
  btn_start[0].addEventListener("click",() => {
    
-    const overlay = document.getElementById("overlay");
     overlay.style.display ="none"
 
 });
 
 
 //Create a Phrases array that stores 5 strings 
-var phrases= ["Nermine plays with Haroun","Haroun loves Nermine","Mom is cooking dinner","Dad is watching TV","Haroun is sleeping"];
+var phrases= ["nermine plays with haroun","haroun loves nermine","mom is cooking dinner","dad is playing with his phone","haroun is sleeping"];
 
 //create a fucntion to generate a random phrase from an array
 //adjust this function 
@@ -95,14 +95,23 @@ function checkLetter(button) {
 
 }
 
-var missed = 5;
+//missed is the counter to check how many wrong guesses the player made 
+
+var missed = 0;
 var counter =0;
 
+
+
+//the title to display in the ovelay
+const h2 = document.getElementsByClassName("title") ;
+
+//add an event listener on the keyboard 
 qwerty.addEventListener ("click", (event) => {
 
 const button =event.target;
 var match =checkLetter(button);
 const hearts = document.getElementsByTagName("img");
+checkWin(); 
 
 if (button.tagName === "BUTTON"){
 
@@ -110,23 +119,56 @@ if (button.tagName === "BUTTON"){
     if (match == null) {
         //the button pressed is not in correct so the guess is wrong,remove one of 
         //the heart images and increment the missed counter
-        missed --;
+        missed ++;
         hearts[counter].style.display ="none";
-        counter++;
-        console.log(missed);
-        console.log("wrong guess");
+        // const heartlost = document.createElement("img");
+        // heartlost.src = "images/lostHeart.png";
+    
+        if(counter < 4 ){
+            counter++ ;
+        
+        }
 
-    }
-   else {
-       console.log("good job");
 
-    }
+    }//end if
    
     }
 
 
 
 });
+//  checkWin function is used to verify if the game is over and if the user won or lost the game 
+
+function checkWin(){
+
+    const phraseToGuess = document.getElementsByClassName("letter");
+    const lettersPressed = document.getElementsByClassName("show");
+
+    if (phraseToGuess.length === lettersPressed.length){
+      //the user guessed the phrase correctly 
+      //display the win overlay
+      overlay.className = "win";
+      h2[0].textContent ="You won great job";
+      btn_start[0].textContent ="TRY AGAIN";
+      overlay.style.display ="flex";
+
+    }
+
+    if (missed > 4 ){
+        //the user made 5 wrong guesses
+        //display the lose overlay
+        overlay.className = "lose";
+        h2[0].textContent ="better luck next time";
+        btn_start[0].textContent ="TRY AGAIN";
+        overlay.style.display ="flex";
+
+    }
+
+
+
+}
+
+// checkWin(); 
 
 
 
