@@ -59,9 +59,9 @@ function resetTheGame(){
             var randomPhrase = getRandomPhraseAsArray(phrases);
             addPhraseToDisplay(randomPhrase);
             list[0].style.display = "";
-            console.clear;
-            console.log("reseting the game");
-            console.log(randomPhrase);
+            // console.clear;
+            // console.log("reseting the game");
+            // console.log(randomPhrase);
 
         for(let i = 0 ; i < hearts.length; i++ ){
             hearts[i].src = "images/liveHeart.png";
@@ -69,6 +69,7 @@ function resetTheGame(){
 
         for(let i = 0 ; i < button.length; i++ ){
         button[i].classList.remove("chosen");
+        button.disabled = false;
 
         }
 
