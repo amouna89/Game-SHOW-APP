@@ -125,12 +125,13 @@ if (button.tagName === "BUTTON"){
     if (match == null) {
         //the button pressed is not in correct so the guess is wrong,remove one of 
         //the heart images and increment the missed counter 
+        
         hearts[missed].src = "images/lostHeart.png";
 
-        if (missed <= 4 ){
+        if (missed < 4 ){
             missed ++;
             
-        }// end if missed <= 3 
+        }
         
         
     }//end if match == null
