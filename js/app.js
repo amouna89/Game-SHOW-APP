@@ -9,6 +9,7 @@ const lettersPressed = document.getElementsByClassName("show");
 const list = document.getElementsByTagName("ul");
 
 
+
 //Create a Phrases array that stores 5 strings 
 var phrases= ["nermine plays with haroun","haroun loves nermine","mom is cooking dinner","dad is playing with his phone","haroun is sleeping"];
 
@@ -42,12 +43,26 @@ function StartTheGame() {
 
 
 function resetTheGame(){
-       console.log("reseting the game");
-       var randomPhrase = getRandomPhraseAsArray(phrases);
-        addPhraseToDisplay(randomPhrase);
-        list[0].style.display = "";
-        const button = document.getElementsByTagName("button");
+
         missed =0;
+        const button = document.getElementsByTagName("button");
+        const listItems = document.querySelectorAll(".letter,.space");
+
+        // remove the li elements from the UL in the DOM
+        for(let i = 0 ; i < listItems.length; i++ ){
+            listItems[i].remove();
+    
+            }
+
+        //generate new random pharse and display it on the screen
+
+            var randomPhrase = getRandomPhraseAsArray(phrases);
+            addPhraseToDisplay(randomPhrase);
+            list[0].style.display = "";
+            console.clear;
+            console.log("reseting the game");
+            console.log(randomPhrase);
+
         for(let i = 0 ; i < hearts.length; i++ ){
             hearts[i].src = "images/liveHeart.png";
         }
@@ -56,6 +71,8 @@ function resetTheGame(){
         button[i].classList.remove("chosen");
 
         }
+
+        
         
 }
 
