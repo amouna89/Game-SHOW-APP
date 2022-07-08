@@ -82,7 +82,15 @@ function checkLetter(button) {
         const li = word[i];
         
         if (buttonLetter === li.textContent){
-            li.className ="show";
+            // li.className ="show";
+            // //element.classList.add("mystyle");
+            //this will overwrite the existing class
+         // To add new classes, without overwriting existing values, add a space and the new classes:
+         // element.className += " class1 class2";
+
+           li.className += " show";
+
+            
             match = buttonLetter;
             
         }
