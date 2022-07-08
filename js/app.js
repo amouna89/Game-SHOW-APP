@@ -107,14 +107,14 @@ const h2 = document.getElementsByClassName("title") ;
 qwerty.addEventListener ("click", (event) => {
 
 const button =event.target;
-var match =checkLetter(button);
+
 const hearts = document.getElementsByTagName("img");
 checkWin(); 
 
 if (button.tagName === "BUTTON"){
-
     button.className ="chosen";
     button.disabled = true;
+    var match =checkLetter(button);
     
     if (match == null) {
         //the button pressed is not in correct so the guess is wrong,remove one of 
@@ -134,31 +134,20 @@ if (button.tagName === "BUTTON"){
 
 
 });
+
 //  checkWin function is used to verify if the game is over and if the user won or lost the game 
 
 function checkWin(){
 
     const phraseTOdisplay = document.getElementsByClassName("letter");
     const lettersPressed = document.getElementsByClassName("show");
-    var phrase1 ="";
-    var phrase2="";
+    
 
-
-    for (let i=0 ;i <lettersPressed.length ; i++){
-
-        phrase1 = phrase1.concat(lettersPressed[i]);
-
-    }
-
-    for (let i=0;i <phraseTOdisplay.length ; i++){
-
-        phrase2 = phrase2.concat(phraseTOdisplay[i]);
-
-    }
-
-    if (phrase1 === phrase2){
-      //the user guessed the phrase correctly 
+    if (phraseTOdisplay.length === lettersPressed.length){
+      
+        //the user guessed the phrase correctly 
       //display the win overlay
+
       overlay.className = "win";
       h2[0].textContent ="You won great job";
       btn_start[0].textContent ="TRY AGAIN";
