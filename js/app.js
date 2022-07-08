@@ -4,9 +4,10 @@ const btn_start =document.getElementsByClassName("btn__reset");
 const  qwerty= document.getElementById("qwerty");
 const overlay = document.getElementById("overlay");
 const hearts = document.getElementsByTagName("img");
-
 const phraseTOdisplay = document.getElementsByClassName("letter");
 const lettersPressed = document.getElementsByClassName("show");
+const list = document.getElementsByTagName("ul");
+
 
 //Create a Phrases array that stores 5 strings 
 var phrases= ["nermine plays with haroun","haroun loves nermine","mom is cooking dinner","dad is playing with his phone","haroun is sleeping"];
@@ -20,12 +21,43 @@ const h2 = document.getElementsByClassName("title") ;
 
  btn_start[0].addEventListener("click",() => {
    
-    overlay.style.display ="none"
+    overlay.style.display ="none";
+    StartTheGame();
+
+    if (btn_start[0].textContent === "TRY AGAIN"){     
+        resetTheGame();
+
+
+    }
 
 });
 
+function StartTheGame() {
+
+    var randomPhrase = getRandomPhraseAsArray(phrases);
+    console.log (randomPhrase);
+    addPhraseToDisplay(randomPhrase);
+
+}
 
 
+function resetTheGame(){
+       console.log("reseting the game");
+       var randomPhrase = getRandomPhraseAsArray(phrases);
+        addPhraseToDisplay(randomPhrase);
+        list[0].style.display = "";
+        const button = document.getElementsByTagName("button");
+        missed =0;
+        for(let i = 0 ; i < hearts.length; i++ ){
+            hearts[i].src = "images/liveHeart.png";
+        }
+
+        for(let i = 0 ; i < button.length; i++ ){
+        button[i].classList.remove("chosen");
+
+        }
+        
+}
 
 //create a fucntion to generate a random phrase from an array
 //adjust this function 
@@ -45,9 +77,7 @@ function getRandomPhraseAsArray(arr){
         
 
 }
-var randomPhrase = getRandomPhraseAsArray(phrases);
 
-console.log (randomPhrase);
 //addPhraseToDisplay will loop the arr and display everyletter on the screen
 
 function addPhraseToDisplay(arr){
@@ -76,7 +106,6 @@ function addPhraseToDisplay(arr){
 
 }//fin de la fonction addPhraseToDisplay
 
-addPhraseToDisplay(randomPhrase);
 
 
 //checkLetter function
@@ -116,10 +145,10 @@ function checkLetter(button) {
 
 function checkWin(){
 
-    const list = document.getElementsByTagName("ul");
+   
     if (phraseTOdisplay.length === lettersPressed.length){
         
-            //the user guessed the phrase correctly 
+        //the user guessed the phrase correctly 
         //display the win overlay
             overlay.className = "win";
             h2[0].textContent ="You won great job";
@@ -149,7 +178,7 @@ function checkWin(){
  //add an event listener on the keyboard 
  qwerty.addEventListener ("click", (event) => {
  
-    const button =event.target;
+    const button = event.target;
     
     if (button.tagName === "BUTTON"){
         button.className ="chosen";
