@@ -82,17 +82,15 @@ function checkLetter(button) {
         const li = word[i];
         
         if (buttonLetter === li.textContent){
-            // li.className ="show";
-            // //element.classList.add("mystyle");
             //this will overwrite the existing class
-         // To add new classes, without overwriting existing values, add a space and the new classes:
-         // element.className += " class1 class2";
+            // li.className ="show";
+            // element.classList.add("mystyle"); 
+            // To add new classes, without overwriting existing values, add a space and the new classes:
+            // element.className += " class1 class2";
 
-           li.className += " show";
-
-            
+            li.className += " show";      
             match = buttonLetter;
-            
+                
         }
 
 
@@ -127,9 +125,9 @@ if (button.tagName === "BUTTON"){
     if (match == null) {
         //the button pressed is not in correct so the guess is wrong,remove one of 
         //the heart images and increment the missed counter 
-        hearts[missed].style.display ="none";
+        hearts[missed].src = "images/lostHeart.png";
 
-        if (missed <= 3 ){
+        if (missed <= 4 ){
             missed ++;
             
         }// end if missed <= 3 
