@@ -115,7 +115,6 @@ qwerty.addEventListener ("click", (event) => {
 const button =event.target;
 
 const hearts = document.getElementsByTagName("img");
-checkWin(); 
 
 if (button.tagName === "BUTTON"){
     button.className ="chosen";
@@ -128,7 +127,7 @@ if (button.tagName === "BUTTON"){
         
         hearts[missed].src = "images/lostHeart.png";
 
-        if (missed < 4 ){
+        if (missed <= 4 ){
             missed ++;
             
         }
@@ -137,6 +136,7 @@ if (button.tagName === "BUTTON"){
     }//end if match == null
    
     }
+    checkWin(); 
 
 
 
@@ -162,7 +162,7 @@ function checkWin(){
 
     }
 
-    if (missed === 4 ){
+    if (missed >= 5 ){
         //the user made 5 wrong guesses
         //display the lose overlay
         overlay.className = "lose";
