@@ -69,7 +69,7 @@ function resetTheGame(){
 
         for(let i = 0 ; i < button.length; i++ ){
         button[i].classList.remove("chosen");
-        button.disabled = false;
+        button[i].disabled = false;
 
         }
 
